@@ -4,11 +4,10 @@
  * Admin Part
  */
 
-
-Route::get('/admin/exit/full','Qubants\Scholar\Controllers\AdmConstructorController@exitPage');
-Route::get('/admin/authorization/check','Qubants\Scholar\Controllers\AdmScholarController@checkLoginPassword')->name('auth');
-
-Route::group(['middleware' =>\Qubants\Scholar\Middleware\IsAdmin::class], function () {
+Route::group(['middleware' => 'web'], function () {
+	Route::get('/admin/exit/full','Qubants\Scholar\Controllers\AdmConstructorController@exitPage');
+	Route::get('/admin/authorization/check','Qubants\Scholar\Controllers\AdmScholarController@checkLoginPassword')->name('auth');
+	Route::group(['middleware' => \Qubants\Scholar\Middleware\IsAdmin::class], function () {
 //AdmCrudController:
 	Route::get('/admin/save_unit', 'Qubants\Scholar\Controllers\AdmCrudController@saveUnit');
 	Route::get('/admin/save_filters', 'Qubants\Scholar\Controllers\AdmCrudController@saveFilters');
@@ -60,4 +59,5 @@ Route::group(['middleware' =>\Qubants\Scholar\Middleware\IsAdmin::class], functi
 
 	Route::post('/admin/send_email', 'Qubants\Scholar\Controllers\AdmBlockController@sendEmails')->name('custom.send_email');
 
+});
 });

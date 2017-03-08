@@ -31,28 +31,18 @@ class AdmUsersModel extends Model
         $this->modelColumns = new DbColumnsSettings();
     }
 
-    public function checkUser($login, $password)
-    {
+    public function checkUser($login, $password) {
 		if (!empty($login) && !empty($password)) {
-			if($this->isSuperUser($login, $password)){
-				if (Session::has('right')) {
-					Session::push('right', 10);
-					Session::push('login', $login);
-				} else {
-					Session::put('right', 10);
-					Session::put('login', $login);
-				}
+			if ($this->isSuperUser($login, $password)) {
+				Session::put('right', '10');
+				Session::put('login', $login);
 				return 1;
 			} else {
 				$users_settings = $this->getUserByLoginPassword($login, $password);
+				print_r($users_settings);
 				if (!empty($users_settings)) {
-					if (Session::has('right')) {
-						Session::push('right', $users_settings->right);
-						Session::push('login', $login);
-					} else {
-						Session::put('right', $users_settings->rigth);
-						Session::put('login', $login);
-					}
+					Session::put('right', $users_settings->rigth);
+					Session::put('login', $login);
 					return 1;
 				}
 			}
