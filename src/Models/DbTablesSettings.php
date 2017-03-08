@@ -88,7 +88,7 @@ class DbTablesSettings extends Model
 
                 foreach ($table_row as $column_name => $cell) {
                     if ($columns_settings[$table_id][$column_name]['column_visible']['value'] == 1) {
-                        $row_content[] = view('admin-client.blocks.b_cell',
+                        $row_content[] = view('scholar::admin-client.blocks.b_cell',
                             ['color' => $color, 'columns' => $columns_settings[$table_id], 'cell' => $cell, 'selects' => $selects, 'column_name' => $column_name, 'cell_number' => $cell_number])->render();
 
                         $cell_number++;
@@ -98,7 +98,7 @@ class DbTablesSettings extends Model
 
                 if ($table['table_row_editable'] == 1 || $table['table_row_delete'] == 1) {
                     $row_key = $row['row_key'][$table_id];
-                    $row_content[] = view('admin-client.blocks.b_button_row',
+                    $row_content[] = view('scholar::admin-client.blocks.b_button_row',
                         ['color' => $color, 'table_main' => $table, 'row_key' => $row_key])->render();
 
                 }

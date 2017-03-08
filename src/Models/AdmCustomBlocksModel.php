@@ -34,7 +34,7 @@ class AdmCustomBlocksModel extends Model
         switch ($block_id) {
             case 24:
             	$users = DB::table('tbl_user')->select(['id','email','first_name','last_name'])->get();
-                return view('admin-client.custom.send-email',['users'=>$users])->render();
+                return view('scholar::admin-client.custom.send-email',['users'=>$users])->render();
                 break;
         }
     }
