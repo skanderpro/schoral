@@ -18,9 +18,10 @@ class ScholarServiceProvider extends ServiceProvider
 	 *
 	 * @return void
 	 */
-	public function register()
-	{
-
+	public function register() {
+		if (!file_exists(public_path('admin-constructor'))) {
+			symlink(__DIR__ . '/public', public_path('admin-constructor'));
+		}
 	}
 
 }
