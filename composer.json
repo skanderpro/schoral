@@ -11,7 +11,9 @@
       "email": "ivinnic@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "doctrine/dbal": "^2.5"
+  },
   "autoload": {
     "psr-4": {
       "Qubants\\Scholar\\": "src"
