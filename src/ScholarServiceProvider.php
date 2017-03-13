@@ -21,10 +21,10 @@ class ScholarServiceProvider extends ServiceProvider
 	public function register() {
 
 		$this->publishes([
-			__DIR__.'/config.php' => config_path('courier.php'),
+			__DIR__.'/config.php' => config_path('scholar.php'),
 		]);
 		$this->mergeConfigFrom(
-			__DIR__.'/config.php', 'courier'
+			__DIR__.'/config.php', 'scholar'
 		);
 
 		if (!file_exists(public_path('admin-constructor'))) {
