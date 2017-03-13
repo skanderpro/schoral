@@ -30,7 +30,7 @@ class AdmCustomBlocksModel extends Model
 			$method     = explode('@', $action)[1];
 			$app        = app();
 			$controller = $app->make($class);
-			return $controller->callAction($method);
+			return $controller->callAction($method, [$block_id]);
 		} else {
 			return 'Custom block not found:' . $block_id;
 		}
