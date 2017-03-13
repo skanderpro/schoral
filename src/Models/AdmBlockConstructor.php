@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use DB;
 
-class AdminBlockConstructor extends Model
+class AdmBlockConstructor extends Model
 {
     public $modelConfig;
     //table:

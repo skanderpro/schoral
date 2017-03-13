@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use DB;
 
-class AdminConstructor extends Model
+class AdmConstructor extends Model
 {//db:
     public $db_name;
 
@@ -63,8 +63,8 @@ class AdminConstructor extends Model
 
     public function getBlocksSettingsByPage($page_id, $page_view)
     {
-        $adminBlockConstructor = new AdminBlockConstructor();
-        $all_blocks_settings = $adminBlockConstructor->getPageBlocksSettings($page_id, $page_view);
+        $admBlockConstructor = new AdmBlockConstructor();
+        $all_blocks_settings = $admBlockConstructor->getPageBlocksSettings($page_id, $page_view);
         return $all_blocks_settings;
     }
 

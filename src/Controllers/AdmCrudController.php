@@ -4,8 +4,8 @@ namespace Qubants\Scholar\Controllers;
 
 use Qubants\Scholar\Models\AdmBlocksSettingsModel;
 use Qubants\Scholar\Models\AdmCrudModel;
-use Qubants\Scholar\Models\AdminBlockConstructor;
-use Qubants\Scholar\Models\AdminConstructor;
+use Qubants\Scholar\Models\AdmBlockConstructor;
+use Qubants\Scholar\Models\AdmConstructor;
 use Qubants\Scholar\Models\AdmPagesSettingsModel;
 use Qubants\Scholar\Models\DbColumnsSettings;
 use Qubants\Scholar\Models\DbTablesSettings;
@@ -47,7 +47,7 @@ class AdmCrudController extends BaseController
     {
         $this->modelTables = new DbTablesSettings();
         $this->modelBlocks = new AdmBlocksSettingsModel();
-        $this->adminConstructor = new AdminConstructor();
+        $this->adminConstructor = new AdmConstructor();
         $this->modelCrud = new AdmCrudModel();
         $this->modelPages = new AdmPagesSettingsModel();
     }

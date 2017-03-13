@@ -5,8 +5,8 @@ namespace Qubants\Scholar\Controllers;
 use Qubants\Scholar\Models\AdmBlocksSettingsModel;
 use Qubants\Scholar\Models\AdmConfig;
 use Qubants\Scholar\Models\AdmCrudModel;
-use Qubants\Scholar\Models\AdminBlockConstructor;
-use Qubants\Scholar\Models\AdminConstructor;
+use Qubants\Scholar\Models\AdmBlockConstructor;
+use Qubants\Scholar\Models\AdmConstructor;
 use Qubants\Scholar\Models\AdmPagesSettingsModel;
 use Qubants\Scholar\Models\AdmSelectModel;
 use Qubants\Scholar\Models\AdmUsersModel;
@@ -17,7 +17,6 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Input;
-use Symfony\Component\Yaml\Tests\A;
 
 
 class AdmScholarController extends BaseController
@@ -62,7 +61,7 @@ class AdmScholarController extends BaseController
         $this->modelConfig = new AdmConfig();
         $this->modelSelect = new AdmSelectModel();
         $this->Crud = new AdmCrudModel();
-        $this->adminConstructor = new AdminConstructor();
+        $this->adminConstructor = new AdmConstructor();
         $this->modelColumns = new DbColumnsSettings();
         $this->modelPages = new AdmPagesSettingsModel();
         $this->modelTables = new DbTablesSettings();

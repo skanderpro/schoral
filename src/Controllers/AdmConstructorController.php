@@ -5,8 +5,8 @@ namespace Qubants\Scholar\Controllers;
 use Qubants\Scholar\Models\AdmBlocksSettingsModel;
 use Qubants\Scholar\Models\AdmConfig;
 use Qubants\Scholar\Models\AdmCrudModel;
-use Qubants\Scholar\Models\AdminBlockConstructor;
-use Qubants\Scholar\Models\AdminConstructor;
+use Qubants\Scholar\Models\AdmBlockConstructor;
+use Qubants\Scholar\Models\AdmConstructor;
 use Qubants\Scholar\Models\AdmPagesSettingsModel;
 use Qubants\Scholar\Models\AdmSelectModel;
 use Qubants\Scholar\Models\AdmUsersModel;
@@ -15,7 +15,6 @@ use Qubants\Scholar\Models\DbTablesSettings;
 use DB;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Input;
-use Symfony\Component\Yaml\Tests\A;
 use Session;
 
 
@@ -62,7 +61,7 @@ class AdmConstructorController extends BaseController
         $this->modelUsers = new AdmUsersModel();
         $this->modelSelect = new AdmSelectModel();
         $this->Crud = new AdmCrudModel();
-        $this->adminConstructor = new AdminConstructor();
+        $this->adminConstructor = new AdmConstructor();
         $this->modelColumns = new DbColumnsSettings();
         $this->modelPages = new AdmPagesSettingsModel();
     }
@@ -350,7 +349,7 @@ class AdmConstructorController extends BaseController
         return $this->getUrlFolderLayout($layout_type) . '.' . $this->folder_blocks_chips . '.' . $chips_name;
     }
 
-    public function saveBlockSettings($page_id, $current_view, $block_id, AdminBlockConstructor $adminBlockConstructor)
+    public function saveBlockSettings($page_id, $current_view, $block_id, AdmBlockConstructor $admBlockConstructor)
     {
         $tables_settings = Input::get('table_settings');
         $tables_settings['table_purpose'] = 'main';
@@ -366,29 +365,29 @@ class AdmConstructorController extends BaseController
         $block_settings['block_width'] = 5;
 
         if ($block_id == 'new') {
-            $adminBlockConstructor->createBlock($block_settings, $tables_settings, $columns_settings);
+            $admBlockConstructor->createBlock($block_settings, $tables_settings, $columns_settings);
         } else {
-            //$adminBlockConstructor->updateBlock($block_id, $block_type, $block_title, $block_configuration, $content_source);
+            //$admBlockConstructor->updateBlock($block_id, $block_type, $block_title, $block_configuration, $content_source);
         }
 
 
     }
 
 
-    public function saveBlockPosition($page_id, $current_view, AdminBlockConstructor $adminBlockConstructor)
+    public function saveBlockPosition($page_id, $current_view, AdmBlockConstructor $admBlockConstructor)
     {
         $blocks_position = Input::get('blocks');
         $blocks = json_decode($blocks_position);
         if (is_array($blocks)) {
-            $adminBlockConstructor->saveBlockPosition($page_id, $current_view, $blocks);
+            $admBlockConstructor->saveBlockPosition($page_id, $current_view, $blocks);
         } else {
             return '';
         }
     }
 
-    public function deleteBlock($page_id, $current_view, $block_id, AdminBlockConstructor $adminBlockConstructor)
+    public function deleteBlock($page_id, $current_view, $block_id, AdmBlockConstructor $admBlockConstructor)
     {
-        $adminBlockConstructor->deleteBlock($page_id, $current_view, $block_id);
+        $admBlockConstructor->deleteBlock($page_id, $current_view, $block_id);
         return redirect(route('admin.page_constructor.load',['page_name' => $page_id, 'page_view' => $current_view]));
     }
 
