@@ -23,7 +23,7 @@ class AdmCustomBlocksModel extends Model
 	}
 
 	public function getContentCustomBlock($block_id) {
-		$custom_blocks = config('courier.custom_blocks');
+		$custom_blocks = config('scholar.custom_blocks');
 		if (!empty($custom_blocks[$block_id])) {
 			$action     = $custom_blocks[$block_id];
 			$class      = explode('@', $action)[0];
