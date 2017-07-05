@@ -28,7 +28,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('/admin/data_table', 'Qubants\Scholar\Controllers\AdmScholarController@dataTable');
 
 
-		Route::get('/admin', 'Qubants\Scholar\Controllers\AdmScholarController@loadClientPage');
+		Route::get('/admin', 'Qubants\Scholar\Controllers\AdmScholarController@loadClientPage')->name('home');
 		Route::get('/admin/{page?}', 'Qubants\Scholar\Controllers\AdmConstructorController@loadPage');
 
 		Route::get('/admin/tables/settings/update', 'Qubants\Scholar\Controllers\AdmConstructorController@updateTablesSettingsGlobal');

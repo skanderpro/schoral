@@ -94,7 +94,7 @@ class AdmScholarController extends BaseController
         $login = Input::get('login');
         $password = Input::get('password');
         if ($this->modelUsers->checkUser($login, $password) == 1) {
-            return $this->loadClientPage();
+        	return redirect()->route('home');
         } else {
             return view($this->getUrlLayout('layout', $this->layout_start), []);
         }

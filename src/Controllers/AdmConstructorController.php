@@ -100,7 +100,7 @@ class AdmConstructorController extends BaseController
             Session::forget('right');
         }
         Session::forget('login');
-        return view($this->getUrlLayout('layout', $this->layout_start_page), []);
+		return redirect()->route('auth');
     }
 
 
