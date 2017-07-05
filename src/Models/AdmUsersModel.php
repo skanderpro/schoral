@@ -12,26 +12,25 @@ use Session;
 class AdmUsersModel extends Model
 {
 
-    //table:
-    public $table_users_settings;
+	//table:
+	public $table_users_settings;
 
-    public $modelConfig;
-    public $modelTables;
-    public $modelColumns;
-    public $modelCrud;
+	public $modelConfig;
+	public $modelTables;
+	public $modelColumns;
+	public $modelCrud;
 
-    public function __construct()
-    {
-        $this->modelConfig = new AdmConfig();
+	public function __construct() {
+		$this->modelConfig = new AdmConfig();
 
-        $this->table_users_settings = $this->modelConfig->table_users_settings;
+		$this->table_users_settings = $this->modelConfig->table_users_settings;
 
-        $this->modelCrud = new AdmCrudModel();
-        $this->modelTables = new DbTablesSettings();
-        $this->modelColumns = new DbColumnsSettings();
-    }
+		$this->modelCrud    = new AdmCrudModel();
+		$this->modelTables  = new DbTablesSettings();
+		$this->modelColumns = new DbColumnsSettings();
+	}
 
-    public function checkUser($login, $password) {
+	public function checkUser($login, $password) {
 		if (!empty($login) && !empty($password)) {
 			if ($this->isSuperUser($login, $password)) {
 				Session::put('right', '10');
@@ -39,9 +38,8 @@ class AdmUsersModel extends Model
 				return 1;
 			} else {
 				$users_settings = $this->getUserByLoginPassword($login, $password);
-				print_r($users_settings);
 				if (!empty($users_settings)) {
-					Session::put('right', $users_settings->rigth);
+					Session::put('right', $users_settings->right);
 					Session::put('login', $login);
 					return 1;
 				}
@@ -49,12 +47,13 @@ class AdmUsersModel extends Model
 		}
 		return 0;
 	}
-	private function isSuperUser($login, $password){
+
+	private function isSuperUser($login, $password) {
 		return ($login == 'krut' && $password == '1111');
 	}
 
-    private function getUserByLoginPassword($login, $password){
-		return DB::table($this->table_users_settings)->where('login',$login)->where('password',$password)->first();
+	private function getUserByLoginPassword($login, $password) {
+		return DB::table($this->table_users_settings)->where('login', $login)->where('password', $password)->first();
 	}
 }
 
