@@ -1,15 +1,10 @@
 <div style="background-color:{{$color}}; position: relative">
     @if($columns[$column_name]['column_display_type']['value']=='text')
-
-
         @if($columns[$column_name]['column_editable']['value']==1)
-            <input class="unit-save-js form-control" type="text" value="{{$cell['value']}}" name="{{$cell['key']}}"
-                   style="height:100%;position:absolute;left:0;width:100%;
- background: transparent;color:black;">
+            <input class="unit-save-js form-control" type="text" value="{{$cell['value']}}" name="{{$cell['key']}}">
         @else
             <span>{{$cell['value']}}</span>
         @endif
-
     @elseif($columns[$column_name]['column_display_type']['value']=='icon')
 
         @if($columns[$column_name]['column_editable']['value']==1)
@@ -36,7 +31,15 @@
 
     @elseif($columns[$column_name]['column_display_type']['value']=='image')
 
-        <img style="max-height:2vw" src="{{$cell['value']}}">
+        <div style=" display: flex;justify-content: flex-start;">
+            <img style="max-height:100%; max-width: 40px; float: left" src="{{$cell['value']}}">
+            @if($columns[$column_name]['column_editable']['value']==1)
+                <input class="unit-save-js form-control" type="text"
+                       name="{{$cell['key']}}"
+                       value="{{$cell['value']}}"
+                       style="float: left;">
+            @endif
+        </div>
 
     @elseif($columns[$column_name]['column_display_type']['value']=='checkbox')
 
@@ -46,7 +49,7 @@
                @endif
                @if($cell['value'] == 1)
                checked
-                @endif
+               @endif
         >
 
 
@@ -61,8 +64,6 @@
     @elseif($columns[$column_name]['column_display_type']['value']=='selectbox')
 
         <select class="unit-save-js form-control" name="{{$cell['key'] }}"
-                style="height:100%;position:absolute;left:0;width:100%;overflow: hidden;
- background: transparent;"
                 @if($columns[$column_name]['column_editable']['value']!=1)
                 disabled
                 @endif
@@ -82,8 +83,6 @@
     @elseif($columns[$column_name]['column_display_type']['value']=='selectbox_column')
 
         <select class="unit-save-js form-control" name="{{$cell['key'] }}"
-                style="height:100%;position:absolute;left:0;width:100%;overflow: hidden;
- background: transparent;"
                 @if($columns[$column_name]['column_editable']['value']!=1)
                 disabled
                 @endif
@@ -111,7 +110,8 @@
     @elseif($columns[$column_name]['column_display_type']['value']=='date')
 
         @if($columns[$column_name]['column_editable']['value']==1)
-            <input class="form-control " type="text" id="{{'cell'.$cell_number}}"
+            <input class="form-control" type="text"
+                   id="{{'cell'.$cell_number}}"
                    value="{{$cell['value']}}"
                    name="{{$cell['key']}}"
             >
@@ -130,6 +130,13 @@
 </div>
 <style>
 
+    .dataTable .form-control {
+        height:100%;
+        width:100%;
+        background: transparent;
+        color:black;
+        overflow: hidden;
+    }
     input:focus {
         border: none !important;
     }
