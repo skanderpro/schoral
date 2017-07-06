@@ -10,6 +10,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::group(['middleware' => \Qubants\Scholar\Middleware\IsAdmin::class], function () {
 //AdmCrudController:
 		Route::get('/admin/save_unit', 'Qubants\Scholar\Controllers\AdmCrudController@saveUnit');
+		Route::any('/admin/save_image', 'Qubants\Scholar\Controllers\AdmCrudController@saveImage');
 		Route::get('/admin/save_filters', 'Qubants\Scholar\Controllers\AdmCrudController@saveFilters');
 		Route::get('/admin/save_settings', 'Qubants\Scholar\Controllers\AdmCrudController@saveTypesSettings');
 		Route::get('/admin/delete_create_unit', 'Qubants\Scholar\Controllers\AdmCrudController@deleteCreateUnit');

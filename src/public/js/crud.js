@@ -27,6 +27,34 @@ $(function () {
         return false;
     })
 
+	$('body').on('click', '.image-save-js', function () {
+		var elem = $(this);
+		var formData = new FormData();
+
+		var hiddenFile = $("<input type=\"file\" name=\"file\" id=\"file1\" style=\"position:absolute;left:-9999px\" />");
+		$('body').append(hiddenFile);
+		hiddenFile.trigger('click');
+
+		hiddenFile.change(function (e) {
+			formData.append('file', hiddenFile.get(0).files[0]);
+			formData.append(elem.data('name'), '');
+			$.ajax({
+				url: '/admin/save_image',
+				data: formData,
+				type: 'POST',
+				contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+				processData: false,
+				dataType: 'json',
+				success: function (data) {
+					var table_data = elem.closest('.block-wrap-js').find('.table-settings-js').DataTable();
+					table_data.draw(true);
+				}
+			});
+			return false;
+		});
+		return false;
+	})
+
     $('body').on('change', '.unit-delete-create-js', function () {
         var value = 0;
         if ($(this).attr('type') == 'checkbox') {

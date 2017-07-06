@@ -114,6 +114,10 @@ class DbColumnsSettings extends Model
 		return $types_settings;
 	}
 
+	public function getColumnsTypeSettingsByColumnId($column_id, $name) {
+		return DB::table($this->table_columns_types_settings)->where('column_id', $column_id)->where('column_type_setting', $name)->first();
+	}
+
 	public function getAllColumnFilterSettings() {
 		$column_filter_settings_data = DB::table($this->table_columns_filter_settings)->get();
 		$filters_settings            = [];

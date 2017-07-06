@@ -2,6 +2,7 @@
 
 namespace Qubants\Scholar\Controllers;
 
+use Illuminate\Http\Request;
 use Qubants\Scholar\Models\AdmBlocksSettingsModel;
 use Qubants\Scholar\Models\AdmCrudModel;
 use Qubants\Scholar\Models\AdmBlockConstructor;
@@ -55,6 +56,46 @@ class AdmCrudController extends BaseController
 
 		$key_data      = Input::get('cell');
 		$key_data_json = Input::get('json_cell');
+
+
+		if (is_array($key_data)) {
+			$this->modelCrud->updateCellByKeyData($key_data, 'none');
+		}
+		if (is_array($key_data_json)) {
+			$this->modelCrud->updateCellByKeyData($key_data_json, 'json');
+		}
+		return 1;
+	}
+
+	public function saveImage(Request $request) {
+		$key_data      = Input::get('cell');
+		$key_data_json = Input::get('json_cell');
+
+		$modelColumns = new DbColumnsSettings();
+
+		foreach ($key_data as $row_id => &$row) {
+			foreach ($row as $column_id => $value) {
+				$column_settings = $modelColumns->getColumnsTypeSettingsByColumnId($column_id, 'image_folder');
+				if (empty($column_settings)) continue;
+
+				$folder = $column_settings->column_type_value;
+
+				if ($request->isMethod('post')) {
+					if ($request->hasFile('file')) {
+						$file = $request->file('file');
+						$file->move(public_path() . '/' . $folder, $file->getClientOriginalName() );
+						$row[$column_id] = '/' . $folder .'/'.$file->getClientOriginalName();
+
+
+						$table_name  = $this->modelTables->getTableNameByColumnId($column_id);
+						$column_name = $modelColumns->getColumnNameByColumnId($column_id);
+
+						$item_date = DB::table($table_name)->where('id', $row_id)->first();
+						unlink(public_path() . $item_date->{$column_name});
+					}
+				}
+			}
+		}
 
 		if (is_array($key_data)) {
 			$this->modelCrud->updateCellByKeyData($key_data, 'none');

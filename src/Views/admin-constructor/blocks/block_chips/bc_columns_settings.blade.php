@@ -362,6 +362,11 @@ if (isset($columns)) {
                             @if($columns[$column_name]['column_display_type']['value']=='selectbox')
                                 @include('scholar::admin-constructor.blocks.block_chips.bc_columns_settings.b_selectbox_settings')
                             @endif
+
+                            @if($columns[$column_name]['column_display_type']['value']=='image')
+                                @include('scholar::admin-constructor.blocks.block_chips.bc_columns_settings.b_image_settings')
+                            @endif
+
                             @if($columns[$column_name]['column_display_type']['value']=='selectbox_column')
                                 @include('scholar::admin-constructor.blocks.block_chips.bc_columns_settings.b_selectbox_column_settings')
                             @endif

@@ -38,6 +38,7 @@
                        name="{{$cell['key']}}"
                        value="{{$cell['value']}}"
                        style="float: left;">
+                <i class="fa fa-picture-o image-save-js" data-name="{{$cell['key']}}"></i>
             @endif
         </div>
 
