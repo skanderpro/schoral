@@ -7,10 +7,9 @@ class ScholarServiceProvider extends ServiceProvider
 
 	protected $defer = false;
 
-	public function boot()
-	{
-		$this->loadRoutesFrom(__DIR__.'/routes.php');
-		$this->loadViewsFrom(__DIR__.'/Views', 'scholar');
+	public function boot() {
+		$this->loadRoutesFrom(__DIR__ . '/routes.php');
+		$this->loadViewsFrom(__DIR__ . '/Views', 'scholar');
 	}
 
 	/**
@@ -21,10 +20,10 @@ class ScholarServiceProvider extends ServiceProvider
 	public function register() {
 
 		$this->publishes([
-			__DIR__.'/config.php' => config_path('scholar.php'),
+			__DIR__ . '/config.php' => config_path('scholar.php'),
 		]);
 		$this->mergeConfigFrom(
-			__DIR__.'/config.php', 'scholar'
+			__DIR__ . '/config.php', 'scholar'
 		);
 
 		if (!file_exists(public_path('admin-constructor'))) {

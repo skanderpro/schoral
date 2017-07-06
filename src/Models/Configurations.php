@@ -1,8 +1,10 @@
 <?php
+
 namespace Qubants\Scholar\Models;
 
 
-class Configurations {
+class Configurations
+{
 
 	private $data = [];
 
@@ -10,8 +12,8 @@ class Configurations {
 		$this->data[$name] = $value;
 	}
 
-	public function __get($name){
-		if(isset($this->data[$name])){
+	public function __get($name) {
+		if (isset($this->data[$name])) {
 			return $this->data[$name];
 		}
 
@@ -24,7 +26,7 @@ class Configurations {
 		return null;
 	}
 
-	public function getArray(){
+	public function getArray() {
 		return $this->data;
 	}
 

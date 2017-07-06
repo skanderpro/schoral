@@ -12,18 +12,18 @@ use Session;
 
 class AdmBlockController extends BaseController
 {
-	public function sendEmails(){
+	public function sendEmails() {
 		$users_id = Input::get('users_id');
-		$subject = Input::get('subject');
-		$message = Input::get('message');
+		$subject  = Input::get('subject');
+		$message  = Input::get('message');
 
 
 		foreach ($users_id as $id_user) {
-			$user_details = DB::table('tbl_user')->where('id',$id_user)->first();
+			$user_details = DB::table('tbl_user')->where('id', $id_user)->first();
 			\Mail::to($user_details->email)
 				->queue(new MainNotification($user_details, $subject, $message));
 		}
 
-		return redirect()->back()->with(['success_msg'=>'Messages sent successfully']);
+		return redirect()->back()->with(['success_msg' => 'Messages sent successfully']);
 	}
 }
