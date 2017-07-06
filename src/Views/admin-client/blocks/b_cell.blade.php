@@ -54,13 +54,11 @@
 
 
     @elseif($columns[$column_name]['column_display_type']['value']=='textarea')
-        <textarea class="unit-save-js" style="max-height:100%;max-width:10vw; overflow: hidden" name="{{$cell['key']}}"
+        <textarea class="unit-save-js" style="background: transparent; height:100%;max-height:100%;width: 100%; overflow: hidden" name="{{$cell['key']}}"
                   @if($columns[$column_name]['column_editable']['value']!=1)
                   disabled
                 @endif
-        >
-    {{$cell['value']}}
-    </textarea>
+        >{{$cell['value']}}</textarea>
     @elseif($columns[$column_name]['column_display_type']['value']=='selectbox')
 
         <select class="unit-save-js form-control" name="{{$cell['key'] }}"

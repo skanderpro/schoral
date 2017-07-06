@@ -90,7 +90,7 @@ exit();*/ ?>
 
             @elseif($column['column_display_type']['value']=='textarea')
 
-                <textarea class="" style="max-height:5vw;max-width:10vw; overflow: hidden"
+                <textarea  style="background: transparent; height:100%;max-height:100%;width: 100%; overflow: hidden"
                           @if(isset($row_content)))
                           name="{{$row_content[$column_name]['key']}}"
                           @else
@@ -100,12 +100,7 @@ exit();*/ ?>
                           @if($column['column_inRow_editable']['value']!=1)
                           disabled
                         @endif
-                >
-            @if(isset($row_content))
-                        {{$row_content[$column_name]['value']}}
-                    @endif
-
-    </textarea>
+                >@if(isset($row_content)){{$row_content[$column_name]['value']}}@endif</textarea>
 
             @elseif($columns[$column_name]['column_display_type']['value']=='selectbox')
                 <select class=" form-control" style="min-width:150px;"
