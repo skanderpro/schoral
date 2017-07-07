@@ -91,7 +91,9 @@ class AdmCrudController extends BaseController
 						$column_name = $modelColumns->getColumnNameByColumnId($column_id);
 
 						$item_date = DB::table($table_name)->where('id', $row_id)->first();
-						unlink(public_path() . $item_date->{$column_name});
+						if(is_file(public_path() . $item_date->{$column_name})){
+							unlink(public_path() . $item_date->{$column_name});
+						}
 					}
 				}
 			}
