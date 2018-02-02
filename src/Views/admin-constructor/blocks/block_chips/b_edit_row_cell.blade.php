@@ -180,6 +180,19 @@ exit();*/ ?>
                 @endif
 
 
+            @elseif($columns[$column_name]['column_display_type']['value']=='tiny')
+                <textarea name="{{$row_content[$column_name]['key']}}" id="editor-sholar-{{$column_name}}">
+                    {{$row_content[$column_name]['value']}}
+                </textarea>
+                <script>
+					$(function () {
+						CKEDITOR.config.language='en'
+						var editor = CKEDITOR.replace('editor-sholar-{{$column_name}}')
+						editor.on( 'change', function( evt ) {
+							$('#editor-sholar-{{$column_name}}').val(evt.editor.getData())
+						});
+					})
+                </script>
             @endif
         </div>
     </div>

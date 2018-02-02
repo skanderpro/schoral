@@ -37,5 +37,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
     <script type="text/javascript" src="{{url('/admin-constructor/js/navigation.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="/admin-constructor/AdminLTE-2.3.7/plugins/ckeditor/ckeditor.js"></script>
 
 </head>
