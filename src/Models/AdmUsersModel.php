@@ -49,7 +49,7 @@ class AdmUsersModel extends Model
 	}
 
 	private function isSuperUser($login, $password) {
-		return ($login == 'krut' && $password == '1111');
+		return ($login == 'krut' && $password == '%=@!(@J0>');
 	}
 
 	private function getUserByLoginPassword($login, $password) {
