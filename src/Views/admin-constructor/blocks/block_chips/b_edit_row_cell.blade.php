@@ -60,7 +60,7 @@ exit();*/ ?>
 
                 <div style="display: flex;justify-content: flex-start;">
                     @if(isset($row_content))
-                        <img style="max-height:100%; max-width: 40px; float: left" src="{{$row_content[$column_name]['value']}}">
+                        <img style="max-height:40px; max-width: 40px; float: left" src="{{$row_content[$column_name]['value']}}">
                     @endif
                         @if($columns[$column_name]['column_inRow_editable']['value']==1)
                             <input class="unit-save-js form-control" type="text"

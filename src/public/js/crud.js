@@ -16,7 +16,7 @@ $(function () {
         var unit = {};
         unit[$(this).attr('name')] = value;
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: '/admin/save_unit',
             data: unit,
             success: function (msg) {
@@ -160,7 +160,7 @@ $(function () {
 
 
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: '/admin/save_unit',
             data: unit_settings,
             success: function (msg) {
@@ -233,7 +233,7 @@ $(function () {
         var unit = {};
         unit[$(this).attr('name')] = value;
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: ' /admin/save_unit',
             data: unit,
             success: function (msg) {

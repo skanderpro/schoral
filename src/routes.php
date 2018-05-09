@@ -9,7 +9,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/admin/authorization/check', 'Qubants\Scholar\Controllers\AdmScholarController@checkLoginPassword')->name('auth');
 	Route::group(['middleware' => \Qubants\Scholar\Middleware\IsAdmin::class], function () {
 //AdmCrudController:
-		Route::get('/admin/save_unit', 'Qubants\Scholar\Controllers\AdmCrudController@saveUnit');
+		Route::post('/admin/save_unit', 'Qubants\Scholar\Controllers\AdmCrudController@saveUnit');
 		Route::any('/admin/save_image', 'Qubants\Scholar\Controllers\AdmCrudController@saveImage');
 		Route::get('/admin/save_filters', 'Qubants\Scholar\Controllers\AdmCrudController@saveFilters');
 		Route::get('/admin/save_settings', 'Qubants\Scholar\Controllers\AdmCrudController@saveTypesSettings');

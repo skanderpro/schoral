@@ -32,7 +32,7 @@
     @elseif($columns[$column_name]['column_display_type']['value']=='image')
 
         <div style=" display: flex;justify-content: flex-start;">
-            <img style="max-height:100%; max-width: 40px; float: left" src="{{$cell['value']}}">
+            <img style="max-height:40px; max-width: 40px; float: left" src="{{$cell['value']}}">
             @if($columns[$column_name]['column_editable']['value']==1)
                 <input class="unit-save-js form-control" type="text"
                        name="{{$cell['key']}}"
