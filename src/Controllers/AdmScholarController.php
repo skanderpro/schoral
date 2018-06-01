@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Cache\RateLimiter;
 
 
 class AdmScholarController extends BaseController
@@ -88,10 +89,29 @@ class AdmScholarController extends BaseController
 	public function checkLoginPassword() {
 		$login    = Input::get('login');
 		$password = Input::get('password');
+
+		if(empty($login) || empty($password)){
+			return view($this->getUrlLayout('layout', $this->layout_start),[]);
+		}
+
+		$limiter = app(RateLimiter::class);
+		if ($limiter->tooManyAttempts('login-admin', 3, 3)) {
+			$seconds = $limiter->availableIn(
+				'login-admin'
+			);
+
+			return view($this->getUrlLayout('layout', $this->layout_start), ['auth_message' => 'Too many attempts. Please try again in ' . round($seconds / 60) . ' minutes.']);
+
+		} else {
+			$limiter->hit('login-admin', 3);
+		}
+
 		if ($this->modelUsers->checkUser($login, $password) == 1) {
 			return redirect()->route('home');
 		} else {
-			return view($this->getUrlLayout('layout', $this->layout_start), []);
+			$auth_message = 'Login or password is wrong';
+			\Log::error("Try to access auth with  $login - ".substr($password,0,5));
+			return view($this->getUrlLayout('layout', $this->layout_start), ['auth_message' => $auth_message]);
 		}
 	}
 
@@ -129,6 +149,9 @@ class AdmScholarController extends BaseController
 	}
 
 	public function loadPageConstructor($page_id, $current_view = 'xs') {
+		if ((Session::has('right') && Session::get('right') == 10)){
+			return view($this->getUrlLayout('layout', $this->layout_start), []);
+		}
 		$admPagesSettingsModel = new AdmPagesSettingsModel();
 		$admin_pages           = $admPagesSettingsModel->getAllPagesSettings();
 		$page_configurations   = '';

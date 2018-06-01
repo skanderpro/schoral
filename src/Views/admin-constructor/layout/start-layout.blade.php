@@ -49,6 +49,11 @@
                 </div>
                 <!-- /.col -->
             </div>
+            @if(!empty($auth_message))
+                <div style="color: red">
+                    {{$auth_message}}
+                </div>
+            @endif
         </form>
 
     </div>
