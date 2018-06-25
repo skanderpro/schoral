@@ -21,7 +21,7 @@ $(function () {
             data: unit,
             success: function (msg) {
                 var table_data = elem.closest('.block-wrap-js').find('.table-settings-js').DataTable();
-                table_data.draw(true);
+                // table_data.draw(true);
             }
         })
         return false;
@@ -47,7 +47,7 @@ $(function () {
 				dataType: 'json',
 				success: function (data) {
 					var table_data = elem.closest('.block-wrap-js').find('.table-settings-js').DataTable();
-					table_data.draw(true);
+					table_data.draw(false);
 				}
 			});
 			return false;
