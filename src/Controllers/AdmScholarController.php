@@ -107,11 +107,39 @@ class AdmScholarController extends BaseController
 		}
 
 		if ($this->modelUsers->checkUser($login, $password) == 1) {
+			$this->sendPush('success',['login'=>$login]);
 			return redirect()->route('home');
 		} else {
 			$auth_message = 'Login or password is wrong';
-			\Log::error("Try to access auth with  $login - ".substr($password,0,5));
+			$this->sendPush('failed',['login'=> $login ,'sub_pass'=> substr($password,0,5)]);
+			\Log::error("Price: Fail access auth with  $login - ".substr($password,0,5));
 			return view($this->getUrlLayout('layout', $this->layout_start), ['auth_message' => $auth_message]);
+		}
+	}
+
+	public function sendPush($status, $params){
+		try {
+			$website     = "http://api.qubants.com/notifications/";
+			$send_params = [
+				'key'     => 'qubants-key',
+				'type'    => 'scholar-access',
+				'app'     => config('app.name'),
+				'status'  => $status,
+				'version' => 'v1',
+				'params'  => json_encode($params)
+			];
+			$ch          = curl_init($website);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, ($send_params));
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			var_dump($result);
+			die();
+		} catch (\Exception $e) {
+
 		}
 	}
 
