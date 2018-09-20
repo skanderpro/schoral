@@ -124,6 +124,7 @@ class AdmScholarController extends BaseController
 				'key'     => 'qubants-key',
 				'type'    => 'scholar-access',
 				'app'     => config('app.name'),
+				'ip'=> 		request()->ip(),
 				'status'  => $status,
 				'version' => 'v1',
 				'params'  => json_encode($params)
