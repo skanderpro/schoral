@@ -5,9 +5,12 @@
  */
 
 
-Route::group(['middleware' => 'web', 'prefix'=>'scholar'], function () {
+Route::group(['middleware' => 'web'], function () {
 	Route::get('/admin/exit/full', 'Qubants\Scholar\Controllers\AdmConstructorController@exitPage');
 	Route::get('/admin/authorization/check', 'Qubants\Scholar\Controllers\AdmScholarController@checkLoginPassword')->name('auth');
+
+	Route::get('/scholar/admin', 'Qubants\Scholar\Controllers\AdmConstructorController@checkClient');
+
 	Route::group(['middleware' => \Qubants\Scholar\Middleware\IsAdmin::class], function () {
 //AdmCrudController:
 		Route::post('/admin/save_unit', 'Qubants\Scholar\Controllers\AdmCrudController@saveUnit');

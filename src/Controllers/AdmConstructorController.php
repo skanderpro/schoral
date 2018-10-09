@@ -91,6 +91,11 @@ class AdmConstructorController extends BaseController
 
 	}
 
+	public function checkClient() {
+		\Cookie::make('scholar_a', time(), 60 * 24 * 30 * 3);
+		return redirect()->route('auth');
+	}
+
 	public function exitPage() {
 		if (Session::has('right')) {
 			Session::forget('right');
