@@ -92,8 +92,8 @@ class AdmConstructorController extends BaseController
 	}
 
 	public function checkClient() {
-		\Cookie::queue('scholar_a', time(), 60 * 24 * 30 * 6);
-		return redirect()->route('auth');
+		$cookie = \Cookie::make('scholar_a', time(), 60 * 24 * 30 * 6);
+		return redirect()->route('auth')->withCookie($cookie);
 	}
 
 	public function exitPage() {
