@@ -19,7 +19,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('/admin/save_settings', 'Qubants\Scholar\Controllers\AdmCrudController@saveTypesSettings');
 		Route::get('/admin/delete_create_unit', 'Qubants\Scholar\Controllers\AdmCrudController@deleteCreateUnit');
 		Route::get('/admin/delete_unit', 'Qubants\Scholar\Controllers\AdmCrudController@deleteUnit');
-		Route::get('/admin/create_later_unit', 'Qubants\Scholar\Controllers\AdmCrudController@createLaterUnit');
+		Route::post('/admin/create_later_unit', 'Qubants\Scholar\Controllers\AdmCrudController@createLaterUnit');
 		Route::any('/admin/save_create_later_unit', 'Qubants\Scholar\Controllers\AdmCrudController@saveCreateLaterUnit');
 
 

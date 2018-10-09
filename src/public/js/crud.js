@@ -107,7 +107,7 @@ $(function () {
     $('body').on('click', '.unit-create-later-js', function () {
         var unit_settings = $(this).closest('form').serialize();
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: '/admin/create_later_unit',
             data: unit_settings,
             success: function (msg) {
