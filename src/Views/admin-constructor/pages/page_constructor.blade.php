@@ -119,13 +119,14 @@
 
 <script type="text/javascript">
     $(function () {
-
-
         var options = {
             cellHeight: 25,
             verticalMargin: 5,
             horizontalMargin: 5,
-            resizable: {handles: 'se'}
+            resizable: {handles: 'se'},
+			draggable: {
+				handle: '.grid-stack-handle',
+			}
         };
         $('.grid-stack').gridstack(options);
 

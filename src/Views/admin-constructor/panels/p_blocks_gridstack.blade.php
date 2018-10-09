@@ -59,8 +59,10 @@
                             <a class="btn btn-flat block-panel-edit-btn-css unit-delete-js" name="{{$block['key']}}">
                                 <i class="fa fa-trash"></i>
                             </a>
+                             <a class="btn btn-flat grid-stack-handle" >
+                                <i class="fa fa-bars"></i>
+                            </a>
                         </div>
-
                     </div>
 
                     @include('scholar::admin-client.blocks.cl_b_table')
